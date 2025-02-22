@@ -27,14 +27,15 @@ class TilAccessoriesController extends Controller
 
         $search = $request->get('search', '');
 
-        $tilAccessories = TilAccessories::search($search)
-            ->latest()
-            ->paginate(50)
-            ->withQueryString();
+        if ($search) {
+            $ALLtilAccessories = TilAccessories::latest()
+                ->search($search)->paginate(10);
+        } else {
+            $ALLtilAccessories = TilAccessories::latest()->paginate(10);
+        }
 
-        return view(
-            'app.til_accessories.index',
-            compact('tilAccessories', 'search')
+        return view('app.til_accessories.index',
+            compact('ALLtilAccessories', 'search')
         );
     }
 

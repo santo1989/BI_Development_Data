@@ -138,16 +138,7 @@
                                     @lang('crud.til_accessories_list.inputs.buyer_id')
                                 </th>
                                 <th class="text-left">
-                                    @lang('crud.til_accessories_list.inputs.User_Name')
-                                </th>
-                                <th class="text-left">
-                                    @lang('crud.til_accessories_list.inputs.item_id')
-                                </th>
-                                <th class="text-left">
                                     @lang('crud.til_accessories_list.inputs.Remarks')
-                                </th>
-                                <th class="text-left">
-                                    @lang('crud.til_accessories_list.inputs.item_umo_id')
                                 </th>
                                 <th class="text-center">
                                     @lang('crud.common.actions')
@@ -155,7 +146,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($tilAccessories as $tilAccessories)
+                            @forelse($ALLtilAccessories as $accessory => $tilAccessories)
                                 <tr>
                                     <td>{{ $tilAccessories->WO_No ?? '-' }}</td>
                                     <td>{{ $tilAccessories->Approved_Date ?? '-' }}</td>
@@ -201,17 +192,10 @@
                                         {{ $tilAccessories->Dealing_Merchant ?? '-' }}
                                     </td>
                                     <td>{{ $tilAccessories->Team_Leader ?? '-' }}</td>
-                                    <td>
-                                        {{ optional($tilAccessories->buyer)->name ?? '-' }}
-                                    </td>
                                     <td>{{ $tilAccessories->User_Name ?? '-' }}</td>
-                                    <td>
-                                        {{ optional($tilAccessories->item)->name ?? '-' }}
-                                    </td>
+                            
                                     <td>{{ $tilAccessories->Remarks ?? '-' }}</td>
-                                    <td>
-                                        {{ optional($tilAccessories->itemUmo)->name ?? '-' }}
-                                    </td>
+                                  
                                     <td class="text-center" style="width: 134px;">
                                         <div role="group" aria-label="Row Actions" class="btn-group">
                                             @can('update', $tilAccessories)
@@ -251,11 +235,12 @@
                             <tr>
                                 <td colspan="36">
                                     {{-- {!! $tilAccessories->render() !!} --}}
-                                    {{-- {{ $tilAccessories->links() }} --}}
+                                    {{ $ALLtilAccessories->links() }}
                                 </td>
                             </tr>
                         </tfoot>
                     </table>
+                    {{-- @dd($tilAccessories); --}}
                 </div>
             </div>
         </div>

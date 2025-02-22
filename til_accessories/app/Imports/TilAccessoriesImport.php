@@ -100,12 +100,12 @@
 //             }
 //         };
 
-       
+
 
 // // dd($cleanedRow);
 
 
-       
+
 
 //         return [
 //             'WO_No' => $cleanedRow[1],
@@ -206,7 +206,7 @@
 //     }
 // }
 
- 
+
 
 namespace App\Imports;
 
@@ -254,6 +254,9 @@ class TilAccessoriesImport implements ToModel, WithStartRow, WithCalculatedFormu
         if (count($batchData) >= 100) {
             $this->insertBatchData($batchData);
             $batchData = [];
+        } else {
+            $this->insertBatchData($batchData);
+            $batchData = [];
         }
 
         // $this->insertBatchData($batchData);
@@ -297,7 +300,7 @@ class TilAccessoriesImport implements ToModel, WithStartRow, WithCalculatedFormu
 
     private function prepareTilAccessoriesData(array $cleanedRow)
     {
-        $buyerName = strtoupper(strtolower($cleanedRow[8] ?? ''));
+        $buyerName = strtoupper(strtolower($cleanedRow[9] ?? ''));
         $buyer = Buyer::firstOrCreate(['name' => $buyerName]);
 
         $itemName = strtoupper(strtolower($cleanedRow[15] ?? ''));
@@ -485,5 +488,4 @@ class TilAccessoriesImport implements ToModel, WithStartRow, WithCalculatedFormu
             throw $e;
         }
     }
-
 }
