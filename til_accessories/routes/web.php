@@ -70,4 +70,9 @@ Route::prefix('/')
         // Import Excel
         Route::get('/import-accessories', [TilAccessoriesController::class, 'importExcel'])->name('import-accessories');
         Route::post('/upload-accessories', [TilAccessoriesController::class, 'updateExcel'])->name('upload-accessories');
+
+        Route::get('til-accessories/filter', [
+            TilAccessoriesController::class,
+        'filter',
+        ])->name('til-accessories.filter');
     });
