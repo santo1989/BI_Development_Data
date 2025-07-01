@@ -29,9 +29,10 @@ class TilAccessoriesController extends Controller
 
         if ($search) {
             $ALLtilAccessories = TilAccessories::latest()
-                ->search($search)->paginate(10);
+                ->search($search)->orderBy('wo_date', 'desc')->paginate(10);
         } else {
-            $ALLtilAccessories = TilAccessories::latest()->paginate(10);
+            $ALLtilAccessories = TilAccessories::latest()->orderBy('wo_date', 'desc')
+                ->paginate(10);
         }
 
         return view('app.til_accessories.index',
